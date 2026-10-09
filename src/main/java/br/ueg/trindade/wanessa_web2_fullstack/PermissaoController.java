@@ -13,6 +13,11 @@ public class PermissaoController {
     @Autowired
     private PermissaoRepository permissaoRepository;
 
+    @PostMapping("/permissoes")
+    public Permissao createPermissao(@RequestBody Permissao permissao) {
+        return permissaoRepository.save(permissao);
+    }
+
     @GetMapping("/permissoes")
     public List<Permissao> getAllPermissoes() {
         return permissaoRepository.findAll();
@@ -24,8 +29,17 @@ public class PermissaoController {
                 .orElseThrow(() -> new RuntimeException("Permissão não encontrada"));
     }
 
-    @PostMapping("/permissoes")
-    public Permissao createPermissao(@RequestBody Permissao permissao) {
+    @PutMapping("/permissoes/{id}")
+    public Permissao updatePermissao(@PathVariable Long id, @RequestBody Permissao permissaoAtualizada) {
+        Permissao permissao = permissaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Permissão não encontrada"));
+        permissao.setNome(permissaoAtualizada.getNome());
+        permissao.setDescricao(permissaoAtualizada.getDescricao());
         return permissaoRepository.save(permissao);
+    }
+
+    @DeleteMapping("/permissoes/{id}")
+    public void deletePermissao(@PathVariable Long id) {
+        permissaoRepository.deleteById(id);
     }
 }

@@ -13,6 +13,11 @@ public class DisciplinaController {
     @Autowired
     private DisciplinaRepository disciplinaRepository;
 
+    @PostMapping("/disciplinas")
+    public Disciplina createDisciplina(@RequestBody Disciplina disciplina) {
+        return disciplinaRepository.save(disciplina);
+    }
+
     @GetMapping("/disciplinas")
     public List<Disciplina> getAllDisciplinas() {
         return disciplinaRepository.findAll();
@@ -24,8 +29,19 @@ public class DisciplinaController {
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));
     }
 
-    @PostMapping("/disciplinas")
-    public Disciplina createDisciplina(@RequestBody Disciplina disciplina) {
+    @PutMapping("/disciplinas/{id}")
+    public Disciplina updateDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplinaAtualizada) {
+        Disciplina disciplina = disciplinaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));
+        disciplina.setNome(disciplinaAtualizada.getNome());
+        disciplina.setProfessor(disciplinaAtualizada.getProfessor());
+        disciplina.setCargaHoraria(disciplinaAtualizada.getCargaHoraria());
+        disciplina.setSemestre(disciplinaAtualizada.getSemestre());
         return disciplinaRepository.save(disciplina);
+    }
+
+    @DeleteMapping("/disciplinas/{id}")
+    public void deleteDisciplina(@PathVariable Long id) {
+        disciplinaRepository.deleteById(id);
     }
 }

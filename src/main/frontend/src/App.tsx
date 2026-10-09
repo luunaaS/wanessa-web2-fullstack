@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <h1>Programação Web II — CRUD Full Stack</h1>
-      <h2>Usuários cadastrados</h2>
+      <h2>Usuários</h2>
       <UsuarioList />
       <h2>Permissões</h2>
       <PermissaoList />
