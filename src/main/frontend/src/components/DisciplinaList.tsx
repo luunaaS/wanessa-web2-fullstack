@@ -14,7 +14,7 @@ function DisciplinaList({ disciplinas, onEditar, onExcluir }: DisciplinaListProp
   }
 
   return (
-    <ul>
+    <ul style={{ listStyle: "none", padding: 0 }}>
       {disciplinas.map((disciplina) => (
         <li key={disciplina.id}>
           <DisciplinaItem disciplina={disciplina} />{" "}

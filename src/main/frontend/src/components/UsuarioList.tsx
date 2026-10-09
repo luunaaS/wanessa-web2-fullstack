@@ -14,7 +14,7 @@ function UsuarioList({ usuarios, onEditar, onExcluir }: UsuarioListProps) {
   }
 
   return (
-    <ul>
+    <ul style={{ listStyle: "none", padding: 0 }}>
       {usuarios.map((usuario) => (
         <li key={usuario.id}>
           <UsuarioItem usuario={usuario} />{" "}

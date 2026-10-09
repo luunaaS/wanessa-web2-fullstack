@@ -14,7 +14,7 @@ function PermissaoList({ permissoes, onEditar, onExcluir }: PermissaoListProps) 
   }
 
   return (
-    <ul>
+    <ul style={{ listStyle: "none", padding: 0 }}>
       {permissoes.map((permissao) => (
         <li key={permissao.id}>
           <PermissaoItem permissao={permissao} />{" "}
