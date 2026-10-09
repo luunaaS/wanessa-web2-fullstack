@@ -1,21 +1,30 @@
 package br.ueg.trindade.wanessa_web2_fullstack;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class PermissaoController {
 
+    @Autowired
+    private PermissaoRepository permissaoRepository;
+
     @GetMapping("/permissoes")
     public List<Permissao> getAllPermissoes() {
-        List<Permissao> permissoes = new ArrayList<>();
-        permissoes.add(new Permissao(1L, "ADMIN", "Acesso total ao sistema"));
-        permissoes.add(new Permissao(2L, "USER", "Acesso básico"));
-        return permissoes;
+        return permissaoRepository.findAll();
+    }
+
+    @GetMapping("/permissoes/{id}")
+    public Permissao getPermissaoById(@PathVariable Long id) {
+        return permissaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Permissão não encontrada"));
+    }
+
+    @PostMapping("/permissoes")
+    public Permissao createPermissao(@RequestBody Permissao permissao) {
+        return permissaoRepository.save(permissao);
     }
 }

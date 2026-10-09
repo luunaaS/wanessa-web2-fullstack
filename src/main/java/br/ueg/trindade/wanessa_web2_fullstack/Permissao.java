@@ -1,16 +1,24 @@
 package br.ueg.trindade.wanessa_web2_fullstack;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Permissao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String descricao;
 
     public Permissao() {
     }
 
-    public Permissao(Long id, String nome, String descricao) {
-        this.id = id;
+    public Permissao(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -24,4 +32,3 @@ public class Permissao {
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 }
-

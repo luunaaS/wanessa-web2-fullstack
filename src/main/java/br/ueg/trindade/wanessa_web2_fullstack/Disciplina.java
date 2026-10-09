@@ -1,8 +1,17 @@
 package br.ueg.trindade.wanessa_web2_fullstack;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Disciplina {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String professor;
     private Integer cargaHoraria;
@@ -11,8 +20,7 @@ public class Disciplina {
     public Disciplina() {
     }
 
-    public Disciplina(Long id, String nome, String professor, Integer cargaHoraria, Integer semestre) {
-        this.id = id;
+    public Disciplina(String nome, String professor, Integer cargaHoraria, Integer semestre) {
         this.nome = nome;
         this.professor = professor;
         this.cargaHoraria = cargaHoraria;
@@ -34,4 +42,3 @@ public class Disciplina {
     public Integer getSemestre() { return semestre; }
     public void setSemestre(Integer semestre) { this.semestre = semestre; }
 }
-
