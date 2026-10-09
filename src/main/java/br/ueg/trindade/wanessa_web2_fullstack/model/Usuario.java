@@ -1,4 +1,4 @@
-package br.ueg.trindade.wanessa_web2_fullstack;
+package br.ueg.trindade.wanessa_web2_fullstack.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
